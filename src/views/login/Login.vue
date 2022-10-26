@@ -20,8 +20,8 @@ export default {
         toMain(){
         this.$router.push('/main')
         }
+        
     }
-
 }
 </script>
 
