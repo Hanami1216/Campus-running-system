@@ -15,12 +15,25 @@
 </template>
 
 <script>
+import { getUser } from '@/api/userApi'
+
 export default {
+    data(){
+        return{
+            user:{
+            }
+        }
+    },
     methods:{
         toMain(){
+        this.get()
         this.$router.push('/main')
+        },
+        get(){
+            getUser().then(response=>{
+                this.user=response.data.data
+            })
         }
-        
     }
 }
 </script>
