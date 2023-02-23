@@ -2,10 +2,10 @@
     <div class="login-wrap">
         <el-form label-position="left" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm login-container">
             <el-form-item >
-                账号：<el-input size="20px"></el-input>
+                账号：<el-input size="20px" v-model="id"></el-input>
             </el-form-item>
             <el-form-item>
-                密码：<el-input></el-input>
+                密码：<el-input v-model="password"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button v-on:click="toMain">登录</el-button>
@@ -15,23 +15,31 @@
 </template>
 
 <script>
-import { getUser } from '@/api/userApi'
+import { getLoginState } from '@/api/loginApi'
+
 
 export default {
     data(){
         return{
-            user:{
-            }
+            id: 1,
+            password:'root',
+            state:null,
         }
     },
     methods:{
         toMain(){
-        this.get()
-        this.$router.push('/main')
+        this.login()
+        if(this.state==true){
+            this.$router.push('/main')
+            this.$message.success('登录成功')
+        }else{
+            this.$message.error('登录失败')
+        }
+        
         },
-        get(){
-            getUser().then(response=>{
-                this.user=response.data.data
+        login(){
+            getLoginState({id:this.id,password:this.password}).then(response=>{
+                this.state = response.data.data
             })
         }
     }
