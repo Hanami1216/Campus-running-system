@@ -8,7 +8,7 @@
                 密码：<el-input v-model="password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button v-on:click="toMain">登录</el-button>
+                <el-button v-on:click="login">登录</el-button>
             </el-form-item>
     </el-form>
     </div>
@@ -27,20 +27,16 @@ export default {
         }
     },
     methods:{
-        toMain(){
-        this.login()
-        if(this.state==true){
-            this.$router.push('/main')
-            this.$message.success('登录成功')
-        }else{
-            this.$message.error('登录失败')
-        }
-        
-        },
         login(){
             getLoginState({id:this.id,password:this.password}).then(response=>{
-                this.state = response.data.data
+                if(response.data.data==true){
+                    this.$router.push('/main')
+                    this.$message.success('登录成功')
+                }else{
+                    this.$message.error('登录失败')
+                    }
             })
+         
         }
     }
 }
