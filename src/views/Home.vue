@@ -27,26 +27,33 @@
     </el-container>
   </template>
 
-  <script>
-  export default {
-    data(){
-        return{
-          // oder:{
-          //   "content": "订单发布内容",
-          //   "id": 1,
-          //   "payment_method": 1,
-          //   "telephone_number": "18038992335",
-          //   "uid": 1,
-          //   "update_time": null
-          // }
-        }
-    },
-    methods:{
-
+<script >
+export default {
+  // ...
+  data() {
+    return {
+    oder:[{
+    "content": "订单发布内容",
+    "id": 1,
+    "payment_method": 1,
+    "telephone_number": "18038992335",
+    "uid": 1,
+    "update_time": null
+    }]
     }
+  }
 }
+const tableData = [
+  {
+    "content": "订单发布内容",
+    "id": 1,
+    "payment_method": 1,
+    "telephone_number": "18038992335",
+    "uid": 1,
+    "update_time": null
+  },
+]
 </script>
-
   
   <style scoped>
   .layout-container-demo .el-header {
