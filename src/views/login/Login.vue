@@ -17,7 +17,6 @@
 <script>
 import { getLoginState } from '@/api/loginApi'
 
-
 export default {
     data(){
         return{

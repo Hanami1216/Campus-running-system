@@ -11,9 +11,9 @@
         <el-main>
           <el-scrollbar>
             <el-table :data="oder" border style="width: 100%">
-              <el-table-column prop="id" label="id" width="180" />
-              <el-table-column prop="content" label="content" width="180" />
-              <el-table-column prop="payment_method" label="payment_method" />
+              <el-table-column prop="id" type="index" label="id" width="180" />
+              <el-table-column prop="content" label="content"  />
+              <el-table-column prop="payment_method" label="支付方式" width="70"/>
               <el-table-column prop="telephone_number" label="telephone_number" width="180" />
               <el-table-column prop="update_time" label="update_time" width="180" />
             </el-table>
@@ -27,7 +27,8 @@
     </el-container>
   </template>
 
-<script >
+<script>
+import { getOder } from '@/api/oderApi'
 export default {
   // ...
   data() {
@@ -39,20 +40,22 @@ export default {
     "telephone_number": "18038992335",
     "uid": 1,
     "update_time": null
-    }]
+    },
+  ]
     }
-  }
-}
-const tableData = [
-  {
-    "content": "订单发布内容",
-    "id": 1,
-    "payment_method": 1,
-    "telephone_number": "18038992335",
-    "uid": 1,
-    "update_time": null
   },
-]
+  methods:{
+    getData(){
+      getOder().then(response=>{
+        this.oder = response.data.data
+      })
+    }
+  }, 
+   created() {
+    // 执行获取数据函数
+    this.getData()
+  },
+}
 </script>
   
   <style scoped>
