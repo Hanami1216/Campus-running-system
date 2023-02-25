@@ -29,17 +29,18 @@ export default {
         login(){
             getLoginState({id:this.id,password:this.password}).then(response=>{
                 if(response.data.data.state==true){
-                    this.setCookie(response.data.data.power,response.data.data.state)
-                    this.$router.push('/main')
                     this.$message.success('登录成功')
+                    this.$router.push('/main')
+                    this.setCookie(response.data.data.power,response.data.data.state,this.id)
                 }else{
                     this.$message.error('登录失败')
                     }
             })
         },
-        setCookie(power,state) {
-            Cookies.set('power', power, { expires: 7 })
-            Cookies.set('state', state, { expires: 7 })
+        setCookie(power,state,uid) {
+            Cookies.set('power', power, { expires: 3 })
+            Cookies.set('state', state, { expires: 3 })
+            Cookies.set('uid', uid, { expires: 3 })
         },
     }
 }
