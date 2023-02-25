@@ -16,7 +16,7 @@
 
 <script>
 import { getLoginState } from '@/api/loginApi'
-
+import Cookies from 'js-cookie'
 export default {
     data(){
         return{
@@ -28,15 +28,19 @@ export default {
     methods:{
         login(){
             getLoginState({id:this.id,password:this.password}).then(response=>{
-                if(response.data.data==true){
+                if(response.data.data.state==true){
+                    this.setCookie(response.data.data.power,response.data.data.state)
                     this.$router.push('/main')
                     this.$message.success('登录成功')
                 }else{
                     this.$message.error('登录失败')
                     }
             })
-         
-        }
+        },
+        setCookie(power,state) {
+            Cookies.set('power', power, { expires: 7 })
+            Cookies.set('state', state, { expires: 7 })
+        },
     }
 }
 </script>

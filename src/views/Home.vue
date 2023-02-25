@@ -6,16 +6,30 @@
       <el-container>
         <el-header>
             <h1 >校园跑腿系统</h1>
+            <h1><div class="quit"><el-button >退出</el-button></div></h1>
+            
         </el-header>
+
         <!-- 数据 -->
         <el-main>
           <el-scrollbar>
             <el-table :data="oder" border style="width: 100%">
               <el-table-column prop="id" type="index" label="id" width="180" />
-              <el-table-column prop="content" label="content"  />
+              <el-table-column prop="content" label="content" height="100" />
               <el-table-column prop="payment_method" label="支付方式" width="70"/>
               <el-table-column prop="telephone_number" label="telephone_number" width="180" />
               <el-table-column prop="update_time" label="update_time" width="180" />
+              <el-table-column prop="state" label="state" width="180" />
+              <el-table-column prop="uid" label="uid" width="180" />
+              <el-table-column label="Operations" width="150">
+                <template #default="scope">
+                  <el-button size="big" type="danger" @click="handleReceiving(scope.$index, scope.row)">
+                    Receiving 
+                  </el-button>
+                </template>
+              </el-table-column>
+                  
+
             </el-table>
           </el-scrollbar>
         </el-main>
@@ -39,7 +53,7 @@ export default {
     "payment_method": 1,
     "telephone_number": "18038992335",
     "uid": 1,
-    "update_time": null
+    "update_time": '123'
     },
   ]
     }
@@ -49,6 +63,10 @@ export default {
       getOder().then(response=>{
         this.oder = response.data.data
       })
+    },
+    handleReceiving(index,row){
+      console.log(row)
+      this.$message.success(row)
     }
   }, 
    created() {
@@ -59,6 +77,9 @@ export default {
 </script>
   
   <style scoped>
+  .quit {
+    position: absolute;left: 10;
+  }
   .layout-container-demo .el-header {
     position: relative;
     background-color: var(--el-color-primary-light-7);
