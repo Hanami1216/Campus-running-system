@@ -15,7 +15,7 @@
         :ellipsis="false"
         @select="handleSelect"
       >
-        <el-menu-item index="0">LOGO</el-menu-item>
+        <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="1" @click="quit()"><span>退出</span></el-menu-item>
       </el-menu>
@@ -143,6 +143,7 @@ export default {
 .flex-grow {
   flex-grow: 1;
 }
+
 .layout-container-demo .el-header {
   position: relative;
   background-color: var(--el-color-primary-light-7);
