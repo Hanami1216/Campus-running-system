@@ -23,7 +23,7 @@
               <el-table-column prop="uid" label="uid" width="180" />
               <el-table-column label="Operations" width="150">
                 <template #default="scope">
-                  <el-button size="big" type="danger" @click="handleReceiving(scope.$index, scope.row)">
+                  <el-button size="large" type="danger" @click="handleReceiving(scope.$index, scope.row)">
                     Receiving 
                   </el-button>
                 </template>

@@ -41,8 +41,21 @@ export default {
             Cookies.set('power', power, { expires: 3 })
             Cookies.set('state', state, { expires: 3 })
             Cookies.set('uid', uid, { expires: 3 })
-        },
-    }
+        }
+    },
+    // beforeRouteEnter(to, from, next) {
+    //     //检查是否已经登录
+    //     if (Cookies.get('state')) {
+    //         // 如果已经登录，则正常进入该页面
+    //         if(Cookies.get('state')){
+    //             next({name:'main'});
+    //         }
+            
+    //     } else {
+    //         // 如果未登录，则重定向到登录页面
+    //         next();
+    //     }
+    // }
 }
 </script>
 
