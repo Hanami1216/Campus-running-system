@@ -11,3 +11,17 @@ export function getOder(params) {
     params
   })
 }
+export function postOder(data) {
+  return request({
+    url: '/api/oder',
+    method: 'post',
+    data
+  })
+}
+export function putOder(data) {
+  return request({
+    url: '/api/oder',
+    method: 'put',
+    data
+  })
+}
