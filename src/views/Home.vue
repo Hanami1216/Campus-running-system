@@ -11,10 +11,9 @@
       <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false">
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
-        <el-menu-item index="1" @click="quit()"><span>退出</span></el-menu-item>
-        <el-menu-item index="1" @click="addOder()"
-          ><span>发布订单</span></el-menu-item
-        >
+        <el-menu-item index="1" @click="centerDialogVisible=true"
+          ><span>发布订单</span></el-menu-item>
+        <el-menu-item index="2" @click="quit()"><span>退出</span></el-menu-item>
       </el-menu>
 
       <!-- 数据 -->
@@ -73,32 +72,45 @@
   <el-dialog
     v-model="centerDialogVisible"
     title="发布订单"
-    width="50%"
+    width="30%"
     align-center
     :oder="oder"
   >
     <el-form
       :label-position="labelPosition"
       label-width="100px"
-      :model="formLabelAlign"
+      :model="oder"
       style="max-width: 460px"
     >
-      <el-form-item label="Name">
+      <el-form-item label="订单内容">
         <el-input v-model="oder.content" />
       </el-form-item>
-      <el-form-item label="Name">
-        <el-input v-model="oder.content" />
+      <el-form-item label="订单时间">
+        <el-date-picker
+        v-model="oder.update_time"
+        type="datetime"
+        placeholder="选择一个时间"
+        format="YYYY/MM/DD hh:mm:ss"
+        value-format="YYYY-MM-DDTHH:mm:ss.sssZ"
+      />
       </el-form-item>
-      <el-form-item label="Name">
-        <el-input v-model="oder.content" />
+      <el-form-item label="支付方式">
+        <el-radio-group v-model="oder.payment_method">
+          <el-radio :label="1">微信支付</el-radio>
+          <el-radio :label="2">支付宝</el-radio>
+          <el-radio :label="3">其他</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="电话号码">
+        <el-input v-model="oder.telephone_number" />
       </el-form-item>
     </el-form>
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="centerDialogVisible = false">Cancel</el-button>
+        <el-button @click="addOder()">确认订单</el-button>
         <el-button type="primary" @click="centerDialogVisible = false">
-          Confirm
+          取消
         </el-button>
       </span>
     </template>
@@ -106,7 +118,7 @@
 </template>
 
 <script>
-import { getOder, putOder } from "@/api/oderApi";
+import { getOder, putOder,postOder } from "@/api/oderApi";
 import jsCookie from "js-cookie";
 
 export default {
@@ -114,6 +126,7 @@ export default {
 
   data() {
     return {
+      labelPosition:'top',
       centerDialogVisible: false,
       oderList: [
         {
@@ -122,7 +135,7 @@ export default {
           payment_method: 1,
           telephone_number: "18038992335",
           uid: 1,
-          update_time: "123",
+          update_time: "2023-02-25 06:46:19",
         },
       ],
       oder: {
@@ -131,7 +144,7 @@ export default {
         payment_method: 1,
         telephone_number: "18038992335",
         uid: 1,
-        update_time: "123",
+        update_time: "2023-02-25 06:46:19",
       },
     };
   },
@@ -174,7 +187,13 @@ export default {
       this.$router.push("/");
     },
     addOder() {
-      this.centerDialogVisible = true;
+      this.centerDialogVisible = false;
+      postOder(this.oder).then(response=>{
+        if(response.data.data){
+          this.$message.success('添加成功')
+          this.getData()
+        }else this.$message.error('添加失败')
+      })
     },
   },
   created() {
