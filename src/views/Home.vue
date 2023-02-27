@@ -26,7 +26,14 @@
               prop="payment_method"
               label="支付方式"
               width="70"
-            />
+            >
+            <template #default="scope">
+              <el-image v-if="scope.row.payment_method===0" :src="require('@/img/vx.png')"/>
+              <el-image v-else-if="scope.row.payment_method===1" :src="require('@/img/zfb.png')"/>
+              <el-image v-else :src="require('@/img/other.png')"/>
+
+            </template>
+            </el-table-column>
             <el-table-column
               prop="telephone_number"
               label="telephone_number"
@@ -96,9 +103,9 @@
       </el-form-item>
       <el-form-item label="支付方式">
         <el-radio-group v-model="oder.payment_method">
-          <el-radio :label="1">微信支付</el-radio>
-          <el-radio :label="2">支付宝</el-radio>
-          <el-radio :label="3">其他</el-radio>
+          <el-radio :label=0>微信支付</el-radio>
+          <el-radio :label=1>支付宝</el-radio>
+          <el-radio :label=2>其他</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="电话号码">
@@ -189,6 +196,7 @@ export default {
     addOder() {
       this.centerDialogVisible = false;
       postOder(this.oder).then(response=>{
+        console.log(this.oder);
         if(response.data.data){
           this.$message.success('添加成功')
           this.getData()
