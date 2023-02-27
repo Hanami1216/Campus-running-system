@@ -8,22 +8,19 @@
         <h1>校园跑腿系统</h1>
       </el-header>
 
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        :ellipsis="false"
-        @select="handleSelect"
-      >
+      <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false">
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="1" @click="quit()"><span>退出</span></el-menu-item>
+        <el-menu-item index="1" @click="addOder()"
+          ><span>发布订单</span></el-menu-item
+        >
       </el-menu>
 
       <!-- 数据 -->
       <el-main>
         <el-scrollbar>
-          <el-table :data="oder" border style="width: 100%">
+          <el-table :data="oderList" border style="width: 100%">
             <el-table-column prop="id" type="index" label="id" width="180" />
             <el-table-column prop="content" label="content" height="100" />
             <el-table-column
@@ -72,16 +69,53 @@
       <el-footer> </el-footer>
     </el-container>
   </el-container>
+
+  <el-dialog
+    v-model="centerDialogVisible"
+    title="发布订单"
+    width="50%"
+    align-center
+    :oder="oder"
+  >
+    <el-form
+      :label-position="labelPosition"
+      label-width="100px"
+      :model="formLabelAlign"
+      style="max-width: 460px"
+    >
+      <el-form-item label="Name">
+        <el-input v-model="oder.content" />
+      </el-form-item>
+      <el-form-item label="Name">
+        <el-input v-model="oder.content" />
+      </el-form-item>
+      <el-form-item label="Name">
+        <el-input v-model="oder.content" />
+      </el-form-item>
+    </el-form>
+
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="centerDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="centerDialogVisible = false">
+          Confirm
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
-import { getOder, postOder, putOder } from "@/api/oderApi";
+import { getOder, putOder } from "@/api/oderApi";
 import jsCookie from "js-cookie";
+
 export default {
   // ...
+
   data() {
     return {
-      oder: [
+      centerDialogVisible: false,
+      oderList: [
         {
           content: "订单发布内容",
           id: 1,
@@ -91,12 +125,20 @@ export default {
           update_time: "123",
         },
       ],
+      oder: {
+        content: "订单发布内容",
+        id: 1,
+        payment_method: 1,
+        telephone_number: "18038992335",
+        uid: 1,
+        update_time: "123",
+      },
     };
   },
   methods: {
     getData() {
       getOder().then((response) => {
-        this.oder = response.data.data;
+        this.oderList = response.data.data;
       });
     },
     handleReceiving(index, row) {
@@ -130,6 +172,9 @@ export default {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
       }
       this.$router.push("/");
+    },
+    addOder() {
+      this.centerDialogVisible = true;
     },
   },
   created() {
