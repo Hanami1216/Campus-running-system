@@ -1,8 +1,9 @@
 <template>
     <div class="login-wrap">
-        <el-form label-position="left" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm login-container">
+        <Title :title="标题"></Title>
+        <el-form label-position="left" ref="ruleForm" label-width="0px" class="demo-ruleForm login-container">
             <el-form-item >
-                账号：<el-input size="20px" v-model="id"></el-input>
+                账号：<el-input  v-model="id"></el-input>
             </el-form-item>
             <el-form-item>
                 密码：<el-input v-model="password"></el-input>
@@ -16,46 +17,40 @@
 
 <script>
 import { getLoginState } from '@/api/loginApi'
+import Title from '@/components/Title.vue'
 import Cookies from 'js-cookie'
 export default {
-    data(){
-        return{
+    data() {
+        return {
             id: 1,
-            password:'root',
-            state:null,
-        }
+            password: "root",
+            state: null,
+        };
     },
-    methods:{
-        login(){
-            getLoginState({id:this.id,password:this.password}).then(response=>{
-                if(response.data.data.state==true){
-                    this.$message.success('登录成功')
-                    this.$router.push('/main')
-                    this.setCookie(response.data.data.power,response.data.data.state,this.id)
-                }else{
-                    this.$message.error('登录失败')
+    methods: {
+        login() {
+            getLoginState({ id: this.id, password: this.password }).then(response => {
+                if (response.data.data.state === true) {
+                    this.$message.success("登录成功");
+                    if (response.data.data.power === 1) {
+                        this.$router.push("/root");
                     }
-            })
+                    else
+                        this.$router.push("/main");
+                    this.setCookie(response.data.data.power, response.data.data.state, this.id);
+                }
+                else {
+                    this.$message.error("登录失败");
+                }
+            });
         },
-        setCookie(power,state,uid) {
-            Cookies.set('power', power, { expires: 3 })
-            Cookies.set('state', state, { expires: 3 })
-            Cookies.set('uid', uid, { expires: 3 })
+        setCookie(power, state, uid) {
+            Cookies.set("power", power, { expires: 3 });
+            Cookies.set("state", state, { expires: 3 });
+            Cookies.set("uid", uid, { expires: 3 });
         }
     },
-    // beforeRouteEnter(to, from, next) {
-    //     //检查是否已经登录
-    //     if (Cookies.get('state')) {
-    //         // 如果已经登录，则正常进入该页面
-    //         if(Cookies.get('state')){
-    //             next({name:'main'});
-    //         }
-            
-    //     } else {
-    //         // 如果未登录，则重定向到登录页面
-    //         next();
-    //     }
-    // }
+    components: { Title }
 }
 </script>
 
