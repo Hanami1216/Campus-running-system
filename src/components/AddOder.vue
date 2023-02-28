@@ -1,5 +1,5 @@
 <template>
-    <el-dialog
+  <el-dialog
     v-model="centerDialogVisible"
     title="发布订单"
     width="30%"
@@ -48,10 +48,9 @@
 </template>
 
 <script>
-import {  postOder } from "@/api/oderApi";
+import { postOder } from "@/api/oderApi";
 export default {
-    props:[
-    ],
+  props: [],
   data() {
     return {
       centerDialogVisible: false,
@@ -76,16 +75,10 @@ export default {
         } else this.$message.error("添加失败");
       });
     },
-    show(){
-        this.centerDialogVisible === true
-    }
+    show() {
+      this.centerDialogVisible === true;
+    },
   },
-  created() {
-  }
+  created() {},
 };
-
 </script>
-
-<style>
-
-</style>

@@ -61,7 +61,7 @@ export default {
           uid: 1,
           update_time: "2023-02-25 06:46:19",
         },
-      ]
+      ],
     };
   },
   methods: {
@@ -84,7 +84,7 @@ export default {
           if (response.data.data == true) {
             this.$message.success("接受订单成功");
             getOder();
-          }else this.$message.error("接受订单失败");
+          } else this.$message.error("接受订单失败");
         });
       }
     },

@@ -22,8 +22,7 @@
       <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false">
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
-        <el-menu-item index="1" 
-        @click="add()"
+        <el-menu-item index="1" @click="add()"
           ><span style="font-size: larger; font-weight: bolder"
             >发布订单</span
           ></el-menu-item
@@ -39,24 +38,23 @@
       <!-- 数据 -->
       <el-main>
         <el-scrollbar>
-          <ShowOder/>
+          <ShowOder />
         </el-scrollbar>
       </el-main>
-      
     </el-container>
   </el-container>
   <AddOder ref="add" />
 </template>
 
 <script>
-import ShowOder from '@/components/ShowOder.vue';
-import AddOder from '@/components/AddOder.vue';
+import ShowOder from "@/components/ShowOder.vue";
+import AddOder from "@/components/AddOder.vue";
 export default {
   // ...
   data() {
     return {
-      centerDialogVisible:false
-    }
+      centerDialogVisible: false,
+    };
   },
   methods: {
     quit() {
@@ -73,17 +71,16 @@ export default {
       }
       this.$router.push("/");
     },
-    add(){
-      this.$refs.add.centerDialogVisible = true
-    }
+    add() {
+      this.$refs.add.centerDialogVisible = true;
+    },
   },
 
-  created() {
-  },
-  components:{
+  created() {},
+  components: {
     ShowOder,
-    AddOder
-  }
+    AddOder,
+  },
 };
 </script>
 
