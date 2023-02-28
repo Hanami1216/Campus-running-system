@@ -12,8 +12,8 @@
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="1" @click="centerDialogVisible=true"
-          ><span>发布订单</span></el-menu-item>
-        <el-menu-item index="2" @click="quit()"><span>退出</span></el-menu-item>
+          ><span style="font-size: larger;font-weight: bolder;">发布订单</span></el-menu-item>
+        <el-menu-item index="2" @click="quit()" style="font-size: larger;font-weight: bolder;"><span>退出</span></el-menu-item>
       </el-menu>
       <el-divider />
       <!-- 数据 -->
@@ -213,7 +213,7 @@ export default {
 <style scoped>
 @font-face {
   font-family: "Title";
-  src: url("../root/YouSheBiaoTiHei-2.ttf") format("woff2");
+  src: url("../YouSheBiaoTiHei-2.ttf") format("woff2");
 }
 
 h1 {

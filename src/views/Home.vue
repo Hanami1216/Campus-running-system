@@ -4,18 +4,18 @@
 
     <!-- 页面 -->
     <el-container>
-      <el-header>
-        <h1>校园跑腿系统</h1>
+      <el-header height="100px">
+        <h1 style="text-align: center; width: 100%; font-size: 40px; color: #fff; text-stroke:1px #000; top: 0px;">用户界面</h1>
       </el-header>
-
-      <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false">
+      <el-divider />
+      <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false" >
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="1" @click="centerDialogVisible=true"
-          ><span>发布订单</span></el-menu-item>
-        <el-menu-item index="2" @click="quit()"><span>退出</span></el-menu-item>
+          ><span style="font-size: larger;font-weight: bolder;">发布订单</span></el-menu-item>
+        <el-menu-item index="2" @click="quit()" ><span style="font-size: larger;font-weight: bolder;">退出</span></el-menu-item>
       </el-menu>
-
+      <el-divider />
       <!-- 数据 -->
       <el-main>
         <el-scrollbar>
@@ -72,7 +72,6 @@
           </el-table>
         </el-scrollbar>
       </el-main>
-      <el-footer> </el-footer>
     </el-container>
   </el-container>
 
@@ -128,9 +127,9 @@
 import { getOder, putOder,postOder } from "@/api/oderApi";
 import jsCookie from "js-cookie";
 
+
 export default {
   // ...
-
   data() {
     return {
       labelPosition:'top',
@@ -212,14 +211,23 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Title";
+  src: url("YouSheBiaoTiHei-2.ttf") format("woff2");
+}
+
+h1 {
+  font-family: "Title", sans-serif;
+  
+}
 .flex-grow {
   flex-grow: 1;
 }
 
 .layout-container-demo .el-header {
   position: relative;
-  background-color: var(--el-color-primary-light-7);
-  color: var(--el-text-color-primary);
+  background-color: #fff;
+  
 }
 .layout-container-demo .el-footer {
   position: absolute;
@@ -234,6 +242,10 @@ export default {
 }
 .layout-container-demo .el-menu {
   border-right: none;
+  border-radius: 20px 20px 20px 20px / 25px 25px 25px 25px;
+  border: solid 1px #000000;
+  outline: solid 2px #000000; 
+  padding-top: 0%;
 }
 .layout-container-demo .el-main {
   padding: 0;

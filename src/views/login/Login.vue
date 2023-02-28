@@ -2,8 +2,16 @@
     <div class="login-wrap">
 
         <el-form label-position="left" ref="ruleForm" label-width="0px" class=" login-container">
-            <el-form-item>
-                <h1 style="text-align: center; color: #000; width: 100%;">校园跑腿系统</h1>
+            <el-form-item style="box-shadow:1px 2px 3px 4px #ccc;border-radius: 20px 20px 20px 20px / 25px 25px 25px 25px ;">
+                <h1 style="
+                text-align: center; color: #fff; 
+                width: 100%; 
+                font-weight: bolder;
+                font-size: 400%; 
+                text-stroke:1px #000; top: 0px;
+                
+                ">
+                    校园跑腿系统</h1>
             </el-form-item>
             <el-form-item >
                 账号：<el-input  v-model="id"></el-input>
@@ -56,6 +64,14 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Title";
+  src: url("../YouSheBiaoTiHei-2.ttf") format("woff2");
+}
+h1 {
+  font-family: "Title", sans-serif;
+  
+}
 .login-wrap {
   box-sizing: border-box;
   width: 100%;
