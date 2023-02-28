@@ -1,66 +1,79 @@
 <template>
-    <div class="login-wrap">
-
-        <el-form label-position="left" ref="ruleForm" label-width="0px" class=" login-container">
-            <el-form-item style="box-shadow:1px 2px 3px 4px #ccc;border-radius: 20px 20px 20px 20px / 25px 25px 25px 25px ;">
-                <h1 style="
-                text-align: center; color: #fff; 
-                width: 100%; 
-                font-weight: bolder;
-                font-size: 400%; 
-                text-stroke:1px #000; top: 0px;
-                
-                ">
-                    校园跑腿系统</h1>
-            </el-form-item>
-            <el-form-item >
-                账号：<el-input  v-model="id"></el-input>
-            </el-form-item>
-            <el-form-item>
-                密码：<el-input v-model="password"></el-input>
-            </el-form-item>
-            <el-form-item label-width="38%">
-                <el-button v-on:click="login" size="large" style="text-align: center; ">登录</el-button>
-            </el-form-item>
-        </el-form>
-    </div>
+  <div class="login-wrap">
+    <el-form
+      label-position="left"
+      ref="ruleForm"
+      label-width="0px"
+      class="login-container"
+    >
+      <el-form-item style="height: auto; width: 100%; box-sizing: ">
+        <h1
+          style="
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            font-weight: bolder;
+            font-size: 200%;
+            text-stroke: 1px #000;
+            top: 0px;
+            /* box-shadow:1px 2px 3px 4px #ccc;
+                border-radius: 20px 20px 20px 20px / 25px 25px 25px 25px ; */
+          "
+        >
+          校园跑腿系统
+        </h1>
+      </el-form-item>
+      <el-form-item> 账号：<el-input v-model="id"></el-input> </el-form-item>
+      <el-form-item>
+        密码：<el-input v-model="password"></el-input>
+      </el-form-item>
+      <el-form-item label-width="38%">
+        <el-button v-on:click="login" size="large" style="text-align: center"
+          >登录</el-button
+        >
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
-import { getLoginState } from '@/api/loginApi'
-import Cookies from 'js-cookie'
+import { getLoginState } from "@/api/loginApi";
+import Cookies from "js-cookie";
 export default {
-    data() {
-        return {
-            id: 1,
-            password: "root",
-            state: null,
-        };
-    },
-    methods: {
-        login() {
-            getLoginState({ id: this.id, password: this.password }).then(response => {
-                if (response.data.data.state === true) {
-                    this.$message.success("登录成功");
-                    if (response.data.data.power === 1) {
-                        this.$router.push("/root");
-                    }
-                    else
-                        this.$router.push("/main");
-                    this.setCookie(response.data.data.power, response.data.data.state, this.id);
-                }
-                else {
-                    this.$message.error("登录失败");
-                }
-            });
-        },
-        setCookie(power, state, uid) {
-            Cookies.set("power", power, { expires: 3 });
-            Cookies.set("state", state, { expires: 3 });
-            Cookies.set("uid", uid, { expires: 3 });
+  data() {
+    return {
+      id: 1,
+      password: "root",
+      state: null,
+    };
+  },
+  methods: {
+    login() {
+      getLoginState({ id: this.id, password: this.password }).then(
+        (response) => {
+          if (response.data.data.state === true) {
+            this.$message.success("登录成功");
+            if (response.data.data.power === 1) {
+              this.$router.push("/root");
+            } else this.$router.push("/main");
+            this.setCookie(
+              response.data.data.power,
+              response.data.data.state,
+              this.id
+            );
+          } else {
+            this.$message.error("登录失败");
+          }
         }
-    }
-}
+      );
+    },
+    setCookie(power, state, uid) {
+      Cookies.set("power", power, { expires: 3 });
+      Cookies.set("state", state, { expires: 3 });
+      Cookies.set("uid", uid, { expires: 3 });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -70,7 +83,6 @@ export default {
 }
 h1 {
   font-family: "Title", sans-serif;
-  
 }
 .login-wrap {
   box-sizing: border-box;
@@ -83,14 +95,14 @@ h1 {
   background-position: center right;
   background-size: 100%;
 }
-.login-container{
-    border-radius: 10px;
-    margin: 0px auto;
-    width: 350px;
-    padding: 30px 35px 15px 35px;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    text-align: left;
-    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+.login-container {
+  border-radius: 10px;
+  margin: 0px auto;
+  width: 350px;
+  padding: 30px 35px 15px 35px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  text-align: left;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
 }
 </style>
