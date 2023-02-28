@@ -5,7 +5,6 @@
     <!-- 页面 -->
     <el-container>
       <el-header>
-        <Title title="这是一个标题" :font-size="50" />
       </el-header>
 
       <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false">
@@ -127,14 +126,10 @@
 <script>
 import { getOder, putOder,postOder } from "@/api/oderApi";
 import jsCookie from "js-cookie";
-import { Title } from "@/components/Title.vue";
+
 
 export default {
   // ...
-
-  components:{
-    Title
-  },
   data() {
     return {
       labelPosition:'top',

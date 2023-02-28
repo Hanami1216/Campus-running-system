@@ -1,23 +1,25 @@
 <template>
     <div class="login-wrap">
-        <Title :title="标题"></Title>
-        <el-form label-position="left" ref="ruleForm" label-width="0px" class="demo-ruleForm login-container">
+
+        <el-form label-position="left" ref="ruleForm" label-width="0px" class=" login-container">
+            <el-form-item>
+                <h1 style="text-align: center; color: #000; width: 100%;">校园跑腿系统</h1>
+            </el-form-item>
             <el-form-item >
                 账号：<el-input  v-model="id"></el-input>
             </el-form-item>
             <el-form-item>
                 密码：<el-input v-model="password"></el-input>
             </el-form-item>
-            <el-form-item>
-                <el-button v-on:click="login">登录</el-button>
+            <el-form-item label-width="38%">
+                <el-button v-on:click="login" size="large" style="text-align: center; ">登录</el-button>
             </el-form-item>
-    </el-form>
+        </el-form>
     </div>
 </template>
 
 <script>
 import { getLoginState } from '@/api/loginApi'
-import Title from '@/components/Title.vue'
 import Cookies from 'js-cookie'
 export default {
     data() {
@@ -49,8 +51,7 @@ export default {
             Cookies.set("state", state, { expires: 3 });
             Cookies.set("uid", uid, { expires: 3 });
         }
-    },
-    components: { Title }
+    }
 }
 </script>
 
