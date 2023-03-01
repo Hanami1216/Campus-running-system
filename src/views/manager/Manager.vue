@@ -22,23 +22,34 @@
       <el-menu class="el-menu-demo" mode="horizontal" :ellipsis="false">
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
-        <el-menu-item index="1" @click="add()"
-          ><span style="font-size: larger; font-weight: bolder"
+        <el-menu-item index="1" @click="add()"><span style="font-size: larger; font-weight: bolder"
             >发布订单</span
-          ></el-menu-item
-        >
+          ></el-menu-item>
         <el-menu-item
           index="2"
           @click="quit()"
           style="font-size: larger; font-weight: bolder"
           ><span>退出</span></el-menu-item
         >
+        <el-menu-item
+          index="3"
+          @click="this.functionSelect=1"
+          style="font-size: larger; font-weight: bolder"
+          ><span>查看订单</span></el-menu-item
+        >
+        <el-menu-item
+          index="4"
+          @click="this.functionSelect=2"
+          style="font-size: larger; font-weight: bolder"
+          ><span>审批用户注册</span></el-menu-item
+        >
       </el-menu>
       <el-divider />
       <!-- 数据 -->
       <el-main>
         <el-scrollbar>
-          <ShowOder />
+          <ShowOder v-if="functionSelect===1"/>
+          <ShowAudit v-else-if="functionSelect===2"/>
         </el-scrollbar>
       </el-main>
     </el-container>
@@ -47,6 +58,7 @@
 </template>
 
 <script>
+import ShowAudit from "@/components/ShowAudit.vue";
 import ShowOder from "@/components/ShowOder.vue";
 import AddOder from "@/components/AddOder.vue";
 export default {
@@ -54,7 +66,7 @@ export default {
   data() {
     return {
       centerDialogVisible: false,
-      
+      functionSelect:1
     };
   },
   methods: {
@@ -81,6 +93,7 @@ export default {
   components: {
     ShowOder,
     AddOder,
+    ShowAudit,
   },
 };
 </script>
