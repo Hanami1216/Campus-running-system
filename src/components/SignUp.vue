@@ -35,6 +35,7 @@
     </el-form>
 
     <template #footer>
+      <el-divider/>
       <span class="dialog-footer">
         <el-button size="large" @click="postAudit()">确认</el-button>
         <el-button type="primary" @click="centerDialogVisible = false">

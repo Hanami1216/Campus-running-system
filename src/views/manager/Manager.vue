@@ -23,14 +23,19 @@
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item
-          @click="this.functionSelect=1"
+          @click="this.functionSelect=3"
           style="font-size: larger; font-weight: bolder"
-          ><span>查看订单</span></el-menu-item
+          ><span>用户管理</span></el-menu-item
         >
         <el-menu-item
           @click="this.functionSelect=2"
           style="font-size: larger; font-weight: bolder"
           ><span>审批用户注册</span></el-menu-item
+        >
+        <el-menu-item
+          @click="this.functionSelect=1"
+          style="font-size: larger; font-weight: bolder"
+          ><span>查看订单</span></el-menu-item
         >
         <el-menu-item index="1" @click="add()"><span style="font-size: larger; font-weight: bolder"
             >发布订单</span
@@ -48,6 +53,7 @@
         <el-scrollbar>
           <ShowOder v-if="functionSelect===1"/>
           <ShowAudit v-else-if="functionSelect===2"/>
+          <ShowUser v-else-if="functionSelect===3"/>
         </el-scrollbar>
       </el-main>
     </el-container>
@@ -59,6 +65,7 @@
 import ShowAudit from "@/components/ShowAudit.vue";
 import ShowOder from "@/components/ShowOder.vue";
 import AddOder from "@/components/AddOder.vue";
+import ShowUser from "@/components/ShowUser.vue";
 export default {
   // ...
   data() {
@@ -92,6 +99,7 @@ export default {
     ShowOder,
     AddOder,
     ShowAudit,
+    ShowUser,
   },
 };
 </script>

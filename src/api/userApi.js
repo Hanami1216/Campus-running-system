@@ -6,7 +6,7 @@ import request from '@/utils/request'
  */
 export function getUser(params) {
   return request({
-    url: '/user',
+    url: '/api/user',
     method: 'get',
     params
   })
@@ -16,9 +16,9 @@ export function getUser(params) {
  *添加供应商信息
  * @returns data
  */
-export function addConsignee(data) {
+export function postUser(data) {
   return request({
-    url: '/consignee',
+    url: '/api/user',
     method: 'post',
     data
   })
@@ -28,9 +28,9 @@ export function addConsignee(data) {
  *修改供应商信息
  * @returns data
  */
-export function modifyConsignee(data) {
+export function putUser(data) {
   return request({
-    url: '/consignee',
+    url: '/api/user',
     method: 'put',
     data
   })
@@ -39,9 +39,9 @@ export function modifyConsignee(data) {
  *删除供应商信息
  * @returns data
  */
-export function deleteConsignee(id) {
+export function deleteUser(id) {
   return request({
-    url: '/consignee/' + id,
+    url: '/api/user' + id,
     method: 'delete'
   })
 }
