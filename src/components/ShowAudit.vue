@@ -66,7 +66,6 @@ export default {
         putAudit(row).then((response) => {
           if (response.data.data == true) {
             this.$message.success("审核成功");
-            getOder();
           } else this.$message.error("审核失败");
         });
       }
