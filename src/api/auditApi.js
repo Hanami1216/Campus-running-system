@@ -28,7 +28,7 @@ export function addAudit(data) {
  *修改注册审核信息
  * @returns data
  */
-export function modifyAudit(data) {
+export function putAudit(data) {
   return request({
     url: '/api/audit',
     method: 'put',

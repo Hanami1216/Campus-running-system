@@ -32,7 +32,7 @@
 
 <script>
 
-import { getAudit } from '@/api/auditApi';
+import { getAudit,putAudit } from '@/api/auditApi';
 
 export default {
   // ...
@@ -47,7 +47,7 @@ export default {
         password: "1234",
         power: 0,
         sex: "男",
-        state: 0,
+        state: false,
       },
       ],
     };
@@ -60,19 +60,14 @@ export default {
     },
     handleReceiving(index, row) {
       if (row.state == true) {
-        this.$message.error("订单已经成功完成，不能再继续接单");
+        this.$message.error("用户已经成功完成审核");
       } else {
-        row.update_time = new Date()
-          .toISOString()
-          .slice(0, 19)
-          .replace("T", " ");
-        row.uid = jsCookie.get("uid");
         row.state = true;
         putAudit(row).then((response) => {
           if (response.data.data == true) {
-            this.$message.success("接受订单成功");
+            this.$message.success("审核成功");
             getOder();
-          } else this.$message.error("接受订单失败");
+          } else this.$message.error("审核失败");
         });
       }
     },
