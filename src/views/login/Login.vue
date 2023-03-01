@@ -6,7 +6,7 @@
       label-width="0px"
       class="login-container"
     >
-      <el-form-item style="height: auto; width: 100%; box-sizing: ">
+      <el-form-item style="height: auto; width: 100%">
         <h1
           style="
             text-align: center;
@@ -16,8 +16,6 @@
             font-size: 200%;
             text-stroke: 1px #000;
             top: 0px;
-            /* box-shadow:1px 2px 3px 4px #ccc;
-                border-radius: 20px 20px 20px 20px / 25px 25px 25px 25px ; */
           "
         >
           校园跑腿系统
@@ -27,16 +25,17 @@
       <el-form-item>
         密码：<el-input v-model="password"></el-input>
       </el-form-item>
-      <el-form-item label-width="38%">
-        <el-button v-on:click="login" size="large" style="text-align: center"
-          >登录</el-button
-        >
+      <el-form-item label-width="30%">
+        <el-button v-on:click="login()" size="large">登录</el-button>
+        <el-button v-on:click="signUp()" size="large">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
+  <SignUp ref="signUpShow" />
 </template>
 
 <script>
+import SignUp from "@/components/SignUp.vue";
 import { getLoginState } from "@/api/loginApi";
 import Cookies from "js-cookie";
 export default {
@@ -67,11 +66,17 @@ export default {
         }
       );
     },
+    signUp() {
+      this.$refs.signUpShow.centerDialogVisible = true;
+    },
     setCookie(power, state, uid) {
       Cookies.set("power", power, { expires: 3 });
       Cookies.set("state", state, { expires: 3 });
       Cookies.set("uid", uid, { expires: 3 });
     },
+  },
+  components: {
+    SignUp,
   },
 };
 </script>
