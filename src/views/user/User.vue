@@ -14,7 +14,7 @@
             top: 0px;
           "
         >
-          管理员界面
+          用户界面
         </h1>
       </el-header>
       <!-- 分割线 -->
@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       centerDialogVisible: false,
+      
     };
   },
   methods: {

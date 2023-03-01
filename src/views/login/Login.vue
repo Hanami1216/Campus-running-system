@@ -54,8 +54,8 @@ export default {
           if (response.data.data.state === true) {
             this.$message.success("登录成功");
             if (response.data.data.power === 1) {
-              this.$router.push("/root");
-            } else this.$router.push("/main");
+              this.$router.push("/manager");
+            } else this.$router.push("/user");
             this.setCookie(
               response.data.data.power,
               response.data.data.state,

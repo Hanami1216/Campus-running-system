@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import login from '../views/login/Login.vue'
-import main from '../views/Home.vue'
-import root from '../views/root/Root.vue'
+import User from '../views/user/User.vue'
+import Manager from '../views/manager/Manager.vue'
+
 
 const routes = [
   {
@@ -11,14 +12,14 @@ const routes = [
     component: login
   },
   {
-    path: '/root',
-    name: 'root',
-    component: root
+    path: '/manager',
+    name: 'manage',
+    component: Manager
   },
   {
-    path: '/main',
-    name: 'main',
-    component: main
+    path: '/user',
+    name: 'user',
+    component: User
   },
 ]
 
