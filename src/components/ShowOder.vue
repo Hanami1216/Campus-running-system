@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="oderList" border style="width: 100%">
+  <el-table :data="oderList" stripe border style="width: 100%">
     <el-table-column prop="id" type="index" label="id" width="180" />
     <el-table-column prop="content" label="content" height="100" />
     <el-table-column prop="payment_method" label="支付方式" width="70">

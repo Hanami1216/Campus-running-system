@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="auditList" border style="width: 100%">
+  <el-table :data="auditList" border stripe :header-cell-style="{'text-align':'center'}">
     <el-table-column prop="id-index" type="index" label="id" width="180" />
     <el-table-column prop="id" label="用户id" height="100" />
     <el-table-column prop="name" label="姓名" height="100" />

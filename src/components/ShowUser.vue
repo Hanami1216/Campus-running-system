@@ -1,19 +1,19 @@
 <template>
-  <el-table :data="userList" border style="width: 100%">
+  <el-table :data="userList" border  stripe  :header-cell-style="{'text-align':'center'}" style="width: 100%">
     <el-table-column prop="id-index" type="index" label="id" />
     <el-table-column prop="id" label="用户id"  width="100"/>
-    <el-table-column prop="name" label="姓名" />
-    <el-table-column prop="sex" label="性别"  />
-    <el-table-column prop="age" label="年龄"  />
-    <el-table-column prop="power" label="权限" width="45">
+    <el-table-column prop="name" label="姓名" width='100' />
+    <el-table-column prop="sex" label="性别" width="50" />
+    <el-table-column prop="age" label="年龄"  width="50"/>
+    <el-table-column prop="power" label="权限" width="50">
       <template #default="scope">
-        <el-icon v-if="scope.row.power===1"><UserFilled /></el-icon>
-        <el-icon v-else-if="scope.row.power===0"><User /></el-icon>
+        <el-icon v-if="scope.row.power===1" size="large"><UserFilled /></el-icon>
+        <el-icon v-else-if="scope.row.power===0" size="large"><User /></el-icon>
       </template>
     </el-table-column>
-    <el-table-column prop="password" label="密码"  />
+    <el-table-column prop="password" label="密码"  width="300"/>
     <el-table-column prop="address" label="地址" />
-    <el-table-column label="管理" width="350">
+    <el-table-column label="管理" width="280">
       <template #default="scope">
         <el-button
           size="large"
