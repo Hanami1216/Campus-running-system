@@ -1,11 +1,16 @@
 <template>
   <el-table :data="userList" border style="width: 100%">
     <el-table-column prop="id-index" type="index" label="id" />
-    <el-table-column prop="id" label="用户id"  />
-    <el-table-column prop="name" label="姓名"  />
+    <el-table-column prop="id" label="用户id"  width="100"/>
+    <el-table-column prop="name" label="姓名" />
     <el-table-column prop="sex" label="性别"  />
     <el-table-column prop="age" label="年龄"  />
-    <el-table-column prop="power" label="权限"  />
+    <el-table-column prop="power" label="权限" width="45">
+      <template #default="scope">
+        <el-icon><UserFilled v-if="scope.row.power===1"/></el-icon>
+        <el-icon><User v-if="scope.row.power===0"/></el-icon>
+      </template>
+    </el-table-column>
     <el-table-column prop="password" label="密码"  />
     <el-table-column prop="address" label="地址" />
     <el-table-column label="管理" width="350">
