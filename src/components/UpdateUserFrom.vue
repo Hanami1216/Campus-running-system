@@ -28,8 +28,8 @@
       </el-form-item>
       <el-form-item label="注册用户级别">
         <el-radio-group v-model="user.power">
-          <el-radio :label="0">管理员</el-radio>
-          <el-radio :label="1">普通用户</el-radio>
+          <el-radio :label="1">管理员</el-radio>
+          <el-radio :label="0">普通用户</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>

@@ -7,8 +7,8 @@
     <el-table-column prop="age" label="年龄"  />
     <el-table-column prop="power" label="权限" width="45">
       <template #default="scope">
-        <el-icon><UserFilled v-if="scope.row.power===1"/></el-icon>
-        <el-icon><User v-if="scope.row.power===0"/></el-icon>
+        <el-icon v-if="scope.row.power===1"><UserFilled /></el-icon>
+        <el-icon v-else-if="scope.row.power===0"><User /></el-icon>
       </template>
     </el-table-column>
     <el-table-column prop="password" label="密码"  />
