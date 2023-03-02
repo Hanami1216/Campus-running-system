@@ -41,8 +41,11 @@ export function putUser(data) {
  */
 export function deleteUser(id) {
   return request({
-    url: '/api/user' + id,
-    method: 'delete'
+    url: '/api/user',
+    method: 'delete',
+    params:{
+      id:id
+    }
   })
 }
 
