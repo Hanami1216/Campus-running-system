@@ -1,4 +1,4 @@
-# vue-demo
+# Campus-running-system
 
 ## Project setup
 ```
