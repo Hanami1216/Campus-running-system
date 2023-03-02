@@ -5,8 +5,7 @@
     <el-container>
       <el-header height="100px">
         <h1
-          style="
-            text-align: center;
+          style="text-align: center;
             width: 100%;
             font-size: 40px;
             color: #fff;
@@ -23,17 +22,17 @@
         <el-menu-item index="0"> LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item
-          @click="this.functionSelect=3"
+          @click="select(3)"
           style="font-size: larger; font-weight: bolder"
           ><span>用户管理</span></el-menu-item
         >
         <el-menu-item
-          @click="this.functionSelect=2"
+          @click="select(2)"
           style="font-size: larger; font-weight: bolder"
           ><span>审批用户注册</span></el-menu-item
         >
         <el-menu-item
-          @click="this.functionSelect=1"
+          @click="select(1)"
           style="font-size: larger; font-weight: bolder"
           ><span>查看订单</span></el-menu-item
         >
@@ -51,9 +50,9 @@
       <!-- 数据 -->
       <el-main>
         <el-scrollbar>
-          <ShowOder v-if="functionSelect===1"/>
-          <ShowAudit v-else-if="functionSelect===2"/>
-          <ShowUser v-else-if="functionSelect===3"/>
+          <ShowOder v-if="this.functionSelect===1"/>
+          <ShowAudit v-else-if="this.functionSelect===2"/>
+          <ShowUser v-else-if="this.functionSelect===3"/>
         </el-scrollbar>
       </el-main>
     </el-container>
@@ -91,6 +90,16 @@ export default {
     },
     add() {
       this.$refs.add.centerDialogVisible = true;
+    },
+    select(functionParams){
+      if(functionParams===1){
+        this.functionSelect=1
+      }else if(functionParams===2){
+        this.functionSelect=2
+      }
+      else if(functionParams===3){
+        this.functionSelect=3
+      }
     },
   },
 

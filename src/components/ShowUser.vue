@@ -5,13 +5,15 @@
     <el-table-column prop="name" label="姓名"  />
     <el-table-column prop="sex" label="性别"  />
     <el-table-column prop="age" label="年龄"  />
+    <el-table-column prop="power" label="权限"  />
     <el-table-column prop="password" label="密码"  />
     <el-table-column prop="address" label="地址" />
     <el-table-column label="管理" width="350">
       <template #default="scope">
         <el-button
           size="large"
-          @click="handleReceiving(scope.$index, scope.row)"
+          type="primary"
+          @click="update(scope.row)"
         >
           修改用户
         </el-button>
@@ -25,11 +27,12 @@
       </template>
     </el-table-column>
   </el-table>
+  <UpdateUserFrom ref="up"/>
 </template>
 
 <script>
-import { getUser,putUser,postUser,deleteUser} from '@/api/userApi';
-
+import { getUser,deleteUser} from '@/api/userApi';
+import UpdateUserFrom from './UpdateUserFrom.vue';
 export default {
   
   // ...
@@ -54,6 +57,11 @@ export default {
         this.userList = response.data.data;
       });
     },
+    update(row){
+      this.$refs.up.user =row;
+      console.log(row);
+      this.$refs.up.centerDialogVisible =true;
+    },
     del(id){
       deleteUser(id).then(response=>{
         if(response.data.data){
@@ -63,12 +71,12 @@ export default {
       })
     }
   },
-  del(row){
-    console.log(row);
-  },
   created() {
     // 执行获取数据函数
     this.getData();
+  },
+  components:{
+    UpdateUserFrom
   }
 
 };
