@@ -62,7 +62,7 @@ export default {
         password: "1234",
         power: 0,
         sex: "男",
-        state: 0,
+        state: false,
       },
     };
   },
